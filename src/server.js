@@ -1,26 +1,16 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+const routes = require('./routes');
 
 const app = express();
 
+mongoose.connect('mongodb+srv://patrick:jesus@omnistackout2019-decym.mongodb.net/semana09?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true    
+});
+
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    return res.json({message: 'Hello Rocketseat'});
-});
-
-app.get('/users/:id', (req, res) => {
-    return res.json({ id: req.params.id });
-});
-
-app.get('/users', (req, res) => {
-    return res.json({ idade: req.query.idade });
-});
-
-app.post('/users', (req, res) => {
-    return res.json({ 
-        message: 'User created!',
-        user: req.body
-    });
-});
+app.use(routes);
 
 app.listen(3333);
