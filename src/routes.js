@@ -15,6 +15,13 @@ routes.get('/users', (req, res) => {
     return res.json({ idade: req.query.idade });
 });
 
+routes.post('/users', (req, res) => {
+    return res.json({ 
+        message: 'User created!',
+        user: req.body
+    });
+});
+
 routes.post('/sessions', SessionController.store);
 
 module.exports = routes;
